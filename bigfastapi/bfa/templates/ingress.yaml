@@ -1,0 +1,32 @@
+{{- range .Values.versions }}  
+
+---
+
+{{- if .ingress.enabled -}}
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .name }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: {{ .ingress.hostName }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .name }}
+                port:
+                  number: {{ .service.port }}
+
+{{- end }}
+
+{{- end }}
+
+
+

@@ -1,0 +1,48 @@
+
+{{- range .Values.versions }}
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .configmap.name }}
+
+
+data:
+  DB_NAME: {{ .configmap.dbName }}
+  DB_USER: {{ .configmap.dbUser }}
+  DB_PASSWORD: {{ .configmap.dbPassword }} 
+  DB_HOST: {{ .configmap.dbHost }}
+  DB_PORT: "{{ .configmap.dbPort }}"
+  DB_TYPE: {{ .configmap.dbType}}
+  JWT_SECRET: {{ .configmap.jwt }}
+  MAIL_USERNAME: {{ .configmap.mailUsername }}
+  MAIL_PASSWORD: {{ .configmap.mailPassword }}
+  MAIL_FROM: {{ .configmap.mailFrom }}
+  MAIL_PORT: "{{ .configmap.mailPort }}"
+  MAIL_SERVER: {{ .configmap.mailServer }}
+  MAIL_FROM_NAME: {{ .configmap.mailFromName }}
+  TEMPLATE_FOLDER: {{ .configmap.template }}
+  EMAIL_VERIFICATION_TEMPLATE: {{ .configmap.emailTemplate }}
+  PASSWORD_RESET_TEMPLATE:  {{ .configmap.passwordTemplate }}
+  FILES_BASE_FOLDER: {{ .configmap.fileBaseFolder }}
+  FLUTTERWAVE_SEC_KEY: {{ .configmap.others }}
+  STRIPE_SEC_KEY: {{ .configmap.others }}
+  GOOGLE_CLIENT_ID: {{ .configmap.others }}
+  GOOGLE_CLIENT_SECRET: {{ .configmap.others }}
+  GOOGLE_SECRET: {{ .configmap.others }}
+  REDIRECT_URL: {{ .configmap.others }}
+  API_URL: {{ .configmap.apiUrl }}
+  FRONTEND_URL: {{ .configmap.others }}
+  FREECURRENCY_API_KEY: {{ .configmap.others }} 
+  DEFAULT_CREDIT_WALLET_BALANCE: {{ .configmap.others }}
+  BASE_URL: {{ .configmap.others }}
+  API_REDIRECT_URL: {{ .configmap.others }}
+
+
+
+
+{{- end }}
+
+

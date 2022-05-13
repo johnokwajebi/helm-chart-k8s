@@ -1,0 +1,31 @@
+{{- range .Values.versions }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}
+  labels:
+    app: {{ .name }}
+spec:
+  replicas: {{ .deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+    spec:
+      containers:
+        - name: {{ .name }}
+          image: {{ .deployment.image }}
+          imagePullPolicy: {{ .deployment.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .deployment.containerPort }}
+
+          envFrom:
+          - configMapRef:
+              name: {{ .configmap.name }}
+{{- end }}
+
+

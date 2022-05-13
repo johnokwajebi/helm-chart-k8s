@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: bigfastapi-cronjob
+spec:
+  schedule: "0 0 * * *"
+
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: bigfastapi
+            image: bfa
+            imagePullPolicy: Never
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from my Bigfastapi cluster
+          restartPolicy: OnFailure

@@ -1,0 +1,96 @@
+versions:
+
+ - name: bfa1
+
+   ingress:
+    enabled: true
+    hostName: bigfastapi.info
+  
+   service:
+    type: ClusterIP
+    port: 40000
+
+
+   configmap:
+       name: bfaone
+       dbName: bfa_app
+       dbUser: user
+       dbPassword: password
+       dbHost: localhost
+       dbPort: "8888"
+       dbType: sqlite
+       jwt: LOve-yours-
+       mailUsername: bfa
+       mailPassword: bfa
+       mailFrom: "bfasupport@api.com"
+       mailFromName: bfasupport
+       mailPort: "593"
+       mailServer: "mail.example.com"
+       template: "bigfastapi/templates"
+       emailTemplate: "email/welcome_email.html"
+       passwordTemplate: "email/password_reset.html"
+       fileBaseFolder: filestorage
+       apiUrl: "http://bigfastapi.info"
+       others: bfa
+
+
+
+   deployment:
+      name: bfa1
+      image: bfa
+      containerPort: 7001
+      replicas: 2
+      imagePullPolicy: Never
+
+   cronjob:
+      schedule: "0 0 * * *"
+      restartPolicy: OnFailure
+
+
+
+
+    
+ - name: bfa2
+
+   ingress:
+    enabled: false
+    hostName: bigfastapi.info
+  
+   service:
+      type: ClusterIP
+      port: 40000
+
+   deployment:
+      image: bfa
+      containerPort: 7001
+      replicas: 2
+      imagePullPolicy: Never
+
+   configmap: 
+       name: bfatwo
+       dbName: bfa_app
+       dbUser: user
+       dbPassword: password
+       dbHost: localhost
+       dbPort: "8886"
+       dbType: sqlite
+       jwt: LOve-yours-
+       mailUsername: bfa
+       mailPassword: bfa
+       mailFrom: "bfasupport@api.com"
+       mailFromName: bfasupport
+       mailPort: "593"
+       mailServer: "mail.example.com"
+       template: "bigfastapi/templates"
+       emailTemplate: "email/welcome_email.html"
+       passwordTemplate: "email/password_reset.html"
+       fileBaseFolder: filestorage
+       apiUrl: "http://bigfastapi.info"
+       others: bfa
+
+
+
+   cronjob:
+      schedule: "0 0 * * *"
+      restartPolicy: OnFailure
+

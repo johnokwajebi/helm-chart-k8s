@@ -1,0 +1,29 @@
+{{- range .Values.versions }}
+
+---
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .name }}
+
+spec:
+  schedule: {{ .cronjob.schedule }}
+
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: {{ .name }}
+            image: {{ .deployment.image }}
+            imagePullPolicy: {{ .deployment.imagePullPolicy }}
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from my Bigfastapi cluster
+          restartPolicy: {{ .cronjob.restartPolicy }}
+
+
+
+{{- end }}
