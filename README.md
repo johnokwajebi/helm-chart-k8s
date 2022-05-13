@@ -18,12 +18,6 @@ When you run the sample code, visit http://127.0.0.1:7001/docs to view the docum
 
 # Helm Chart
 
-- 2 deployments (api, background), each deployment uses one image but with different launch parameters (api, background)
-- configmap for config file
-- Ingress which sends requests to pods with API only
-- Cronjob, which is executed once a day (the image is the same as in the deployments, but with the cronjob parameter)
-
-
 - Helm chart contains 2 deployments (bfa1 and bfa2) which uses one image named bfa.
 
 - Configmaps which contains the configurations for both deployments
