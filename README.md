@@ -22,13 +22,14 @@ When you run the sample code, visit http://127.0.0.1:7001/docs to view the docum
 
 - Configmaps which contains the configurations for both deployments
 
-- Ingress which sends request to only bfa1. This can be updated to send request to the bfa2 by disabling ingress in bfa1 and enabling ingress in bfa by running `helm upgrade bfa bfa -f ./bfa/values.yaml`
+- Ingress which sends request to only bfa1. This can be updated to send request to the bfa2 by disabling ingress in bfa1 and enabling ingress in bfa in the `.bigfastapi/bfa/values.yaml` file. Run `helm upgrade bfa bfa -f ./bfa/values.yaml` in the bigfastapi folder to update the changes.
 
 - Cronjob, which is executed once a day (the image is the same as in the deployments, but with the cronjob parameter)
 
 # Running the Helm Chart
 
 - There's a bash script `deploy.sh` to automate the build of the docker image and deploys the helm chart.
+- The chart values and template can be found in `./bigfastapi/bfa`
 
 
 # Documentation
